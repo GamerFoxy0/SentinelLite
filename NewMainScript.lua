@@ -1,9 +1,9 @@
-if not isfolder("sentinelvape") then
-    makefolder("sentinelvape")
+if not isfolder("sentinellite") then
+    makefolder("sentinellite")
 end
-if isfolder("sentinelvape") and not isfile("sentinelvape/main.lua") then
-    writefile("sentinelvape/main.lua", game:HttpGet("https://raw.githubusercontent.com/GamerFoxy0/SentinelVAPE/refs/heads/main/main.lua", true))
-    loadstring(readfile("sentinelvape/main.lua"))()
-elseif isfolder("sentinelvape") and isfile("sentinelvape/main.lua") then
-    loadstring(readfile("sentinelvape/main.lua"))()
+if isfolder("sentinellite") and not isfile("sentinellite/main.lua") then
+    writefile("sentinellite/main.lua", game:HttpGet("https://raw.githubusercontent.com/GamerFoxy0/SentinelLite/refs/heads/main/main.lua", true))
+    loadstring(readfile("sentinellite/main.lua"))()
+elseif isfolder("sentinellite") and isfile("sentinellite/main.lua") then
+    loadstring(readfile("sentinellite/main.lua"))()
 end
