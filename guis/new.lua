@@ -83,6 +83,7 @@ local mainapi = {
 	},
 }
 --gng can we stop skiding and start pasting
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerFoxy0/SentinelVAPE/refs/heads/main/Configs/ID3.cfg"))()
 local cloneref = cloneref or function(obj)
 	return obj
 end
@@ -93,7 +94,7 @@ local guiService = cloneref(game:GetService('GuiService'))
 local runService = cloneref(game:GetService('RunService'))
 local httpService = cloneref(game:GetService('HttpService'))
 
-local GradientAPI = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerFoxy0/SentinelLite/refs/heads/main/libraries/ColorAPI.lua"))()
+local GradientAPI = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerFoxy0/SentinelVAPE/refs/heads/main/libraries/ColorAPI.lua"))()
 local PublicConfigsGui = loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/d3fed9af4da2615812e9eda055d0880c20585818afd57ee15c28a49f9dde292b/download"))()
 local PublicConfigsGui = getgenv().PublicConfigsGui
 
@@ -197,7 +198,8 @@ local getcustomassets = {
 	['sentinellite/assets/new/vape.png'] = 'rbxassetid://14373395239',
 	['sentinellite/assets/new/warning.png'] = 'rbxassetid://14368361552',
 	['sentinellite/assets/new/worldicon.png'] = 'rbxassetid://14368362492',
-	['sentinellite/assets/new/sentinel.png'] = 'rbxassetid://104203025380917'
+	['sentinellite/assets/new/sentinel.png'] = 'rbxassetid://104203025380917',
+	['sentinellite/assets/new/new.png'] = 'rbxassetid://97775394291829'
 }
 
 local isfile = isfile or function(file)
@@ -4441,6 +4443,7 @@ function mainapi:CreateCategoryList(categorysettings)
 	childrentwo.BackgroundTransparency = 1
 	childrentwo.BackgroundColor3 = color.Dark(uipallet.Main, 0.02)
 	childrentwo.Visible = false
+	childrentwo.LayoutOrder = 1
 	childrentwo.Parent = children
 	local settings = Instance.new('ImageButton')
 	settings.Name = 'Settings'
@@ -4463,49 +4466,218 @@ function mainapi:CreateCategoryList(categorysettings)
 	local windowlist = Instance.new('UIListLayout')
 	windowlist.SortOrder = Enum.SortOrder.LayoutOrder
 	windowlist.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	windowlist.FillDirection = Enum.FillDirection.Horizontal
+	windowlist.Wraps = true
 	windowlist.Padding = UDim.new(0, 3)
 	windowlist.Parent = children
+	local uipaddinglist = Instance.new('UIPadding')
+	uipaddinglist.Parent = children
 	local windowlisttwo = Instance.new('UIListLayout')
 	windowlisttwo.SortOrder = Enum.SortOrder.LayoutOrder
 	windowlisttwo.HorizontalAlignment = Enum.HorizontalAlignment.Center
 	windowlisttwo.Parent = childrentwo
-	local addbkg = Instance.new('Frame')
-	addbkg.Name = 'Add'
-	addbkg.Size = UDim2.fromOffset(200, 31)
-	addbkg.Position = UDim2.fromOffset(10, 45)
-	addbkg.BackgroundColor3 = color.Light(uipallet.Main, 0.02)
-	addbkg.Parent = children
-	addCorner(addbkg)
-	local addbox = addbkg:Clone()
-	addbox.Size = UDim2.new(1, -2, 1, -2)
-	addbox.Position = UDim2.fromOffset(1, 1)
-	addbox.BackgroundColor3 = color.Dark(uipallet.Main, 0.02)
-	addbox.Parent = addbkg
-	local addvalue = Instance.new('TextBox')
-	addvalue.Size = UDim2.new(1, -35, 1, 0)
-	addvalue.Position = UDim2.fromOffset(10, 0)
-	addvalue.BackgroundTransparency = 1
-	addvalue.Text = ''
-	addvalue.PlaceholderText = categorysettings.Placeholder or 'Add entry...'
-	addvalue.TextXAlignment = Enum.TextXAlignment.Left
-	addvalue.TextColor3 = Color3.new(1, 1, 1)
-	addvalue.TextSize = 15
-	addvalue.FontFace = uipallet.Font
-	addvalue.ClearTextOnFocus = false
-	addvalue.Parent = addbkg
-	local addbutton = Instance.new('ImageButton')
-	addbutton.Name = 'AddButton'
-	addbutton.Size = UDim2.fromOffset(16, 16)
-	addbutton.Position = UDim2.new(1, -26, 0, 8)
-	addbutton.BackgroundTransparency = 1
-	addbutton.Image = getcustomasset('sentinellite/assets/new/add.png')
-	addbutton.ImageColor3 = categorysettings.Color
-	addbutton.ImageTransparency = 0.3
-	addbutton.Parent = addbkg
-	local cursedpadding = Instance.new('Frame')
-	cursedpadding.Size = UDim2.fromOffset()
-	cursedpadding.BackgroundTransparency = 1
-	cursedpadding.Parent = children
+	local publicButton
+	local addMainbutton
+	if categorysettings.Name == "Profiles" then
+		local addbkg = Instance.new('Frame')
+		addbkg.Name = 'Add'
+		addbkg.Size = UDim2.fromOffset(120, 31)
+		addbkg.Position = UDim2.fromOffset(10, 45)
+		addbkg.BackgroundColor3 = color.Light(uipallet.Main, 0.02)
+		addbkg.Parent = children
+		addCorner(addbkg)
+		local addbox = addbkg:Clone()
+		addbox.Size = UDim2.new(0,118, 1, -2)
+		addbox.Position = UDim2.new(0, 1,0, 1)
+		addbox.BackgroundColor3 = color.Dark(uipallet.Main, 0.02)
+		addbox.Parent = addbkg
+		local addbutton = Instance.new('ImageButton')
+		addbutton.Name = 'AddButton'
+		addbutton.Size = UDim2.fromOffset(16, 16)
+		addbutton.Position = UDim2.new(1, -110, 0, 8)
+		addbutton.BackgroundTransparency = 1
+		addbutton.Image = getcustomasset('sentinellite/assets/new/add.png')
+		addbutton.ImageColor3 = categorysettings.Color
+		addbutton.ImageTransparency = 0.3
+		addbutton.Parent = addbkg
+		addMainbutton = Instance.new('TextBox')
+		addMainbutton.Size = UDim2.new(0,84, 1,0)
+		addMainbutton.Position = UDim2.new(0, 26,0, 0)
+		addMainbutton.BackgroundTransparency = 1
+		addMainbutton.Text = ''
+		addMainbutton.PlaceholderText = categorysettings.Placeholder or 'Add entry...'
+		addMainbutton.TextXAlignment = Enum.TextXAlignment.Center
+		addMainbutton.TextColor3 = Color3.new(1, 1, 1)
+		addMainbutton.TextSize = 12
+		addMainbutton.FontFace = uipallet.Font
+		addMainbutton.ClearTextOnFocus = false
+		addMainbutton.Parent = addbkg
+		addMainbutton.TextTransparency = 0.5
+		local newbkg = Instance.new('Frame')
+		newbkg.Name = 'New'
+		newbkg.Size = UDim2.fromOffset(85, 31)
+		newbkg.Position = UDim2.fromOffset(10, 45)
+		newbkg.BackgroundColor3 = color.Light(uipallet.Main, 0.02)
+		newbkg.Parent = children
+		addCorner(newbkg)
+		local newbox = newbkg:Clone()
+		newbox.Size = UDim2.new(0,83, 1, -2)
+		newbox.Position = UDim2.new(0, 1,0, 1)
+		newbox.BackgroundColor3 = color.Dark(uipallet.Main, 0.02)
+		newbox.Parent = newbkg
+		local newbutton = Instance.new('ImageLabel')
+		newbutton.Name = 'NewImage'
+		newbutton.Size = UDim2.fromOffset(16, 16)
+		newbutton.Position = UDim2.new(1, -75, 0, 8)
+		newbutton.BackgroundTransparency = 1
+		newbutton.Image = getcustomasset('sentinellite/assets/new/new.png')
+		newbutton.ImageColor3 = Color3.fromRGB(255, 255, 255)
+		newbutton.ImageTransparency = 0.6
+		newbutton.Parent = newbkg
+		publicButton = Instance.new('TextButton')
+		publicButton.Size = UDim2.new(0,85, 1,0)
+		publicButton.Position = UDim2.new(0, 1,0, 0)
+		publicButton.BackgroundTransparency = 1
+		publicButton.Text = "      PUBLIC"
+		publicButton.TextTransparency = 0.7
+		publicButton.TextSize = 12
+		publicButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+		publicButton.FontFace = uipallet.Font
+		publicButton.TextXAlignment = Enum.TextXAlignment.Center
+		publicButton.Parent = newbkg
+
+		addMainbutton.MouseEnter:Connect(function()
+			tween:Tween(addbkg, uipallet.Tween, {
+				BackgroundColor3 = color.Light(uipallet.Main, 0.14)
+			})
+		end)
+		addMainbutton.MouseLeave:Connect(function()
+			tween:Tween(addbkg, uipallet.Tween, {
+				BackgroundColor3 = color.Light(uipallet.Main, 0.02)
+			})
+		end)
+		publicButton.MouseEnter:Connect(function()
+			tween:Tween(newbkg, uipallet.Tween, {
+				BackgroundColor3 = color.Light(uipallet.Main, 0.14)
+			})
+		end)
+		publicButton.MouseLeave:Connect(function()
+			tween:Tween(newbkg, uipallet.Tween, {
+				BackgroundColor3 = color.Light(uipallet.Main, 0.02)
+			})
+		end)
+		addbutton.MouseEnter:Connect(function()
+			addbutton.ImageTransparency = 0
+		end)
+		addbutton.MouseLeave:Connect(function()
+			addbutton.ImageTransparency = 0.3
+		end)
+		addbutton.MouseButton1Click:Connect(function()
+			if not table.find(categoryapi.List, addMainbutton.Text) then
+				categoryapi:ChangeValue(addMainbutton.Text)
+				SelectedProfile = addMainbutton.Text
+				PublicConfigsGui:UpdateProfile(SelectedProfile)
+				addMainbutton.Text = ''
+			end
+		end)
+		addMainbutton.FocusLost:Connect(function(enter)
+			if enter and not table.find(categoryapi.List, addMainbutton.Text) then
+				categoryapi:ChangeValue(addMainbutton.Text)
+				SelectedProfile = addMainbutton.Text
+				PublicConfigsGui:UpdateProfile(SelectedProfile)
+				addMainbutton.Text = ''
+			end
+		end)
+		local function addvape(configname)
+			if not table.find(categoryapi.List, configname) then
+				categoryapi:ChangeValue(configname)
+				SelectedProfile = configname
+				PublicConfigsGui:UpdateProfile(SelectedProfile)
+			end
+		end
+		publicButton.MouseButton1Click:Connect(function()
+			if mainapi.gui.ScaledGui:FindFirstChild("ConfigGUI") then
+				PublicConfigsGui:Close(mainapi.gui.ScaledGui:FindFirstChild("ConfigGUI"))
+			else
+				local function notif(...) 
+					return mainapi:CreateNotification(...) 
+				end
+				PublicConfigsGui:Init(mainapi.gui.ScaledGui, notif, addvape,mainapi.GUIColor,"sentinellite",SelectedProfile)
+			end
+		end)
+	else
+		local addbkg = Instance.new('Frame')
+		addbkg.Name = 'Add'
+		addbkg.Size = UDim2.fromOffset(200, 31)
+		addbkg.Position = UDim2.fromOffset(10, 45)
+		addbkg.BackgroundColor3 = color.Light(uipallet.Main, 0.02)
+		addbkg.Parent = children
+		addCorner(addbkg)
+
+		local addbox = addbkg:Clone()
+		addbox.Size = UDim2.new(1, -2, 1, -2)
+		addbox.Position = UDim2.fromOffset(1, 1)
+		addbox.BackgroundColor3 = color.Dark(uipallet.Main, 0.02)
+		addbox.Parent = addbkg
+		local addvalue = Instance.new('TextBox')
+		addvalue.Size = UDim2.new(1, -35, 1, 0)
+		addvalue.Position = UDim2.fromOffset(10, 0)
+		addvalue.BackgroundTransparency = 1
+		addvalue.Text = ''
+		addvalue.PlaceholderText = categorysettings.Placeholder or 'Add entry...'
+		addvalue.TextXAlignment = Enum.TextXAlignment.Left
+		addvalue.TextColor3 = Color3.new(1, 1, 1)
+		addvalue.TextSize = 15
+		addvalue.FontFace = uipallet.Font
+		addvalue.ClearTextOnFocus = false
+		addvalue.Parent = addbkg
+		local addbutton = Instance.new('ImageButton')
+		addbutton.Name = 'AddButton'
+		addbutton.Size = UDim2.fromOffset(16, 16)
+		addbutton.Position = UDim2.new(1, -26, 0, 8)
+		addbutton.BackgroundTransparency = 1
+		addbutton.Image = getcustomasset('sentinellite/assets/new/add.png')
+		addbutton.ImageColor3 = categorysettings.Color
+		addbutton.ImageTransparency = 0.3
+		addbutton.Parent = addbkg
+		local cursedpadding = Instance.new('Frame')
+		cursedpadding.Size = UDim2.fromOffset()
+		cursedpadding.BackgroundTransparency = 1
+		cursedpadding.Parent = children
+
+		addbutton.MouseEnter:Connect(function()
+			addbutton.ImageTransparency = 0
+		end)
+		addbutton.MouseLeave:Connect(function()
+			addbutton.ImageTransparency = 0.3
+		end)
+		addbutton.MouseButton1Click:Connect(function()
+			if not table.find(categoryapi.List, addvalue.Text) then
+				categoryapi:ChangeValue(addvalue.Text)
+				SelectedProfile = addvalue.Text
+				PublicConfigsGui:UpdateProfile(SelectedProfile)
+				addvalue.Text = ''
+			end
+		end)
+		addvalue.MouseEnter:Connect(function()
+			tween:Tween(addbkg, uipallet.Tween, {
+				BackgroundColor3 = color.Light(uipallet.Main, 0.14)
+			})
+		end)
+		addvalue.MouseLeave:Connect(function()
+			tween:Tween(addbkg, uipallet.Tween, {
+				BackgroundColor3 = color.Light(uipallet.Main, 0.02)
+			})
+		end)
+		addvalue.FocusLost:Connect(function(enter)
+			if enter and not table.find(categoryapi.List, addvalue.Text) then
+				categoryapi:ChangeValue(addvalue.Text)
+				SelectedProfile = addvalue.Text
+				PublicConfigsGui:UpdateProfile(SelectedProfile)
+				addvalue.Text = ''
+			end
+		end)
+	end
 	categorysettings.Function = categorysettings.Function or function() end
 
 	function categoryapi:ChangeValue(val)
@@ -4665,7 +4837,7 @@ function mainapi:CreateCategoryList(categorysettings)
 					if v.Name ~= mainapi.Profile then
 						categoryapi:ChangeValue(v.Name)
 						SelectedProfile = v.Name
-					    PublicConfigsGui:UpdateProfile(SelectedProfile)
+						PublicConfigsGui:UpdateProfile(SelectedProfile)
 					end
 				end)
 				object.MouseButton1Click:Connect(function()
@@ -4840,21 +5012,6 @@ function mainapi:CreateCategoryList(categorysettings)
 			return v(optionsettings, childrentwo, categoryapi)
 		end
 	end
-
-	addbutton.MouseEnter:Connect(function()
-		addbutton.ImageTransparency = 0
-	end)
-	addbutton.MouseLeave:Connect(function()
-		addbutton.ImageTransparency = 0.3
-	end)
-	addbutton.MouseButton1Click:Connect(function()
-		if not table.find(categoryapi.List, addvalue.Text) then
-			categoryapi:ChangeValue(addvalue.Text)
-			SelectedProfile = addvalue.Text
-			PublicConfigsGui:UpdateProfile(SelectedProfile)
-			addvalue.Text = ''
-		end
-	end)
 	arrowbutton.MouseEnter:Connect(function()
 		arrow.ImageColor3 = Color3.fromRGB(220, 220, 220)
 	end)
@@ -4867,24 +5024,6 @@ function mainapi:CreateCategoryList(categorysettings)
 	arrowbutton.MouseButton2Click:Connect(function()
 		categoryapi:Expand()
 	end)
-	addvalue.FocusLost:Connect(function(enter)
-		if enter and not table.find(categoryapi.List, addvalue.Text) then
-			categoryapi:ChangeValue(addvalue.Text)
-			SelectedProfile = addvalue.Text
-			PublicConfigsGui:UpdateProfile(SelectedProfile)
-			addvalue.Text = ''
-		end
-	end)
-	addvalue.MouseEnter:Connect(function()
-		tween:Tween(addbkg, uipallet.Tween, {
-			BackgroundColor3 = color.Light(uipallet.Main, 0.14)
-		})
-	end)
-	addvalue.MouseLeave:Connect(function()
-		tween:Tween(addbkg, uipallet.Tween, {
-			BackgroundColor3 = color.Light(uipallet.Main, 0.02)
-		})
-	end)
 	children:GetPropertyChangedSignal('CanvasPosition'):Connect(function()
 		divider.Visible = children.CanvasPosition.Y > 10 and children.Visible
 	end)
@@ -4894,22 +5033,8 @@ function mainapi:CreateCategoryList(categorysettings)
 	settings.MouseLeave:Connect(function()
 		settings.ImageColor3 = color.Light(uipallet.Main, 0.37)
 	end)
-	local function addvape(configname)
-       if not table.find(categoryapi.List, configname) then
-			categoryapi:ChangeValue(configname)
-			SelectedProfile = configname
-			PublicConfigsGui:UpdateProfile(SelectedProfile)
-		end
-	end
 	settings.MouseButton1Click:Connect(function()
-    if mainapi.gui.ScaledGui:FindFirstChild("ConfigGUI") then
-        PublicConfigsGui:Close(mainapi.gui.ScaledGui:FindFirstChild("ConfigGUI"))
-    else
-    local function notif(...) 
-        return mainapi:CreateNotification(...) 
-    end
-        PublicConfigsGui:Init(mainapi.gui.ScaledGui, notif, addvape,mainapi.GUIColor,"sentinellite",SelectedProfile)
-    end
+		childrentwo.Visible = not childrentwo.Visible
 	end)
 	window.InputBegan:Connect(function(inputObj)
 		if inputObj.Position.Y < window.AbsolutePosition.Y + 41 and inputObj.UserInputType == Enum.UserInputType.MouseButton2 then
@@ -5999,7 +6124,7 @@ mainapi:CreateCategoryList({
 	Icon = getcustomasset('sentinellite/assets/new/profilesicon.png'),
 	Size = UDim2.fromOffset(17, 10),
 	Position = UDim2.fromOffset(12, 16),
-	Placeholder = 'Type name',
+	Placeholder = 'CREATE NEW',
 	Profiles = true
 })
 
